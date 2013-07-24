@@ -38,7 +38,7 @@ public class Field {
     }
 
     public boolean makeStep(int x, int y, char playerSymbol) {
-        if (x > 0 && x <= FIELD_SIZE || y > 0 && y <= FIELD_SIZE) {
+        if (x > 0 && x <= FIELD_SIZE && y > 0 && y <= FIELD_SIZE) {
             if (permissibleStep(x, y)) {
                 gameField[y-1][x-1] = playerSymbol;
                 return true;
@@ -51,7 +51,8 @@ public class Field {
     }
 
     public boolean checkWinner(char playerSymbol) {
-        if (gameField[0][0] == playerSymbol && gameField[0][1] == playerSymbol && gameField[0][2] == playerSymbol ||
+
+            if (gameField[0][0] == playerSymbol && gameField[0][1] == playerSymbol && gameField[0][2] == playerSymbol ||
                 gameField[1][0] == playerSymbol && gameField[1][1] == playerSymbol && gameField[1][2] == playerSymbol ||
                 gameField[2][0] == playerSymbol && gameField[2][1] == playerSymbol && gameField[2][2] == playerSymbol ||
                 gameField[0][0] == playerSymbol && gameField[1][0] == playerSymbol && gameField[2][0] == playerSymbol ||
@@ -61,7 +62,7 @@ public class Field {
                 gameField[2][0] == playerSymbol && gameField[1][1] == playerSymbol && gameField[0][2] == playerSymbol) {
             System.out.println("GameOver!");
             gameOver = true;
-            if (playerSymbol == 'X') firstPlayerWin = true;
+            if (playerSymbol == FIRST_PLAYER) firstPlayerWin = true;
             return true;
         }
         return false;
