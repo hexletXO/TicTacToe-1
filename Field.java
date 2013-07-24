@@ -38,7 +38,7 @@ public class Field {
     }
 
     public boolean makeStep(int x, int y, char playerSymbol) {
-        if (x > 0 && x <= FIELD_SIZE && y > 0 && y <= FIELD_SIZE) {
+        if (x > 0 && x <= FIELD_SIZE || y > 0 && y <= FIELD_SIZE) {                 // ну тут понятно
             if (permissibleStep(x, y)) {
                 gameField[y-1][x-1] = playerSymbol;
                 return true;
@@ -51,7 +51,7 @@ public class Field {
     }
 
     public boolean checkWinner(char playerSymbol) {
-
+                                           // грубовато, но хотя бы кода меньше получается:)
             if (gameField[0][0] == playerSymbol && gameField[0][1] == playerSymbol && gameField[0][2] == playerSymbol ||
                 gameField[1][0] == playerSymbol && gameField[1][1] == playerSymbol && gameField[1][2] == playerSymbol ||
                 gameField[2][0] == playerSymbol && gameField[2][1] == playerSymbol && gameField[2][2] == playerSymbol ||
@@ -68,10 +68,10 @@ public class Field {
         return false;
     }
 
-    public boolean checkDraw() {
-        for (int x = 0; x < FIELD_SIZE; x++) {
+    public boolean checkDraw() {                // так понимаю проверка на ничью, у меня просто считал 5 ходов (вот что такое count и MAX_COUNT у меня)
+        for (int x = 0; x < FIELD_SIZE; x++) {  // твое решение лучше
             for (int y = 0; y < FIELD_SIZE; y++) {
-                if (gameField[x][y] == ' ') {
+                if (gameField[x][y] == ' ') {   // hardcode
                     return false;
                 }
             }
